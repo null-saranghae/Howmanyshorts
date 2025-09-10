@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>쉬는시간 숏폼 계산기</title>
+    <style>
+      body {font-family: system-ui, sans-serif; background:#111; color:#eee; text-align:center; padding:40px;}
+      h2 {margin-bottom:20px;}
+    
+    </style>
+  </head>
+  
+<body>
+
+    <div class="container">
+      <h2>쉬는시간 동안 몇 편의 쇼츠를 볼 수 있을까?</h2>
+    
+      <p>쉬는 시간 (분)<br>
+        <input type="number" id="breakMin" placeholder="예: 15"></p>
+    
+      <button onclick="calcShorts()">계산하기</button>
+    
+      <div id="result">대략 <span style="color:#39ff14">15</span>개 볼 수 있어요! (여유 0초)</div>
+    </div>
+    
+    <script>
+    function calcShorts() {
+      let min = document.getElementById("breakMin").value;
+      min = Number(min);
+    
+      if (min <= 0) {
+        document.getElementById("result").innerHTML = "으악 쉬는시간이 없다니!!";
+        return;
+      }
+    
+      let totalSec = Math.floor(min * 60);
+      let count = Math.floor(totalSec / 60); // 1개=60초
+      let leftSec = totalSec - count * 60;
+    
+      document.getElementById("result").innerHTML =
+        "🎥 대략 <span style='color:#39ff14'>" + count +
+        "</span>개 볼 수 있어요! (여유 " + leftSec + "초)";
+    }
+    </script>
+    
+    </body>
+</html>
